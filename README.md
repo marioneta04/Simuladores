@@ -20,3 +20,4 @@ Estabilidad inicial correcta. Si se cae sola, está mal configurada.
 Registro del resultado:
 Guardar datos como tiempo de vuelo, punto de impacto, velocidad relativa, impulso de colisión y piezas derribadas.
 Mostrar al final de cada intento: puntuación y un breve “reporte de tiro”.
+Link de video: https://youtu.be/JZRrTX5EkrE
