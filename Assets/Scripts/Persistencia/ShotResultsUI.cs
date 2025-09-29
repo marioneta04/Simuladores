@@ -11,8 +11,8 @@ public class ShotResultsUI : MonoBehaviour
 {
     [Header("UI References")]
     public Button showResultsButton;
-    public Transform contentParent; // Content con Vertical Layout Group
-    public GameObject rowPrefab;    // Prefab de la fila
+    public Transform contentParent; 
+    public GameObject rowPrefab;    
 
     private string dbUrl = "https://simuladores-58820-default-rtdb.firebaseio.com/shots.json";
 
@@ -25,7 +25,7 @@ public class ShotResultsUI : MonoBehaviour
     {
         Debug.Log("LoadResults called");
 
-        // GET de Firebase
+        
         RestClient.Get(dbUrl).Then(response =>
         {
             if (string.IsNullOrEmpty(response.Text))
@@ -34,7 +34,7 @@ public class ShotResultsUI : MonoBehaviour
                 return;
             }
 
-            // Deserializar a diccionario
+            
             var resultsDict = JsonConvert.DeserializeObject<Dictionary<string, Shot>>(response.Text);
 
             if (resultsDict == null || resultsDict.Count == 0)
@@ -43,17 +43,17 @@ public class ShotResultsUI : MonoBehaviour
                 return;
             }
 
-            // Limpiar contenido anterior
+            
             foreach (Transform child in contentParent)
                 Destroy(child.gameObject);
 
-            // Tomar los últimos 4 disparos por tiempo
+           
             var lastShots = resultsDict.Values
-                .OrderByDescending(s => s.time) // Asegurate de tener `time` en Shot
+                .OrderByDescending(s => s.time)
                 .Take(4)
                 .ToList();
 
-            // Instanciar fila por cada disparo
+           
             foreach (var shot in lastShots)
             {
                 GameObject row = Instantiate(rowPrefab, contentParent);

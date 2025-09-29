@@ -13,9 +13,9 @@ public class Shot
     public float relativeSpeed;
     public float impulse;
     public string targetName;
-    public float time; // <--- tiempo del disparo
+    public float time; 
 
-    public Shot() { } // Necesario para deserialización
+    public Shot() { }
 
     public Shot(LauncherController launcher, Vector3 impactPoint, float relVel, float impulse, string targetName, bool hitTarget = true, int objectsHit = 1)
     {
@@ -32,6 +32,6 @@ public class Shot
         this.hitTarget = hitTarget;
         this.distance = Vector3.Distance(launcher.spawnPoint.position, impactPoint);
         this.objectsHit = objectsHit;
-        this.time = Time.time; // <--- guardamos el momento del disparo
+        this.time = (float)System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
     }
 }
